@@ -1,6 +1,7 @@
 import * as express from 'express';
 import * as cors from 'cors';
 import { HttpMethods, ContentType, Controller } from './api-interface';
+import { Server } from 'http';
 
 export const app = express();
 export const router = express.Router();
@@ -13,7 +14,7 @@ export class ApiManager
 {
     public static async run(
         port: number,
-        afterServeCallback: () => void = () => { },
+        afterServeCallback: (server: Server) => void = () => { },
         onApiErrors: (err: any) => void = () => { },
         apiInstances: Array<Controller>): Promise<void>
     {
@@ -26,7 +27,7 @@ export class ApiManager
             await this.buildControllerApi(apiInstance, onApiErrors);
         }
 
-        app.listen(port, () => afterServeCallback());
+        const server = app.listen(port, () => afterServeCallback(server));
 
         app.use('/', router);
     }
@@ -97,7 +98,7 @@ export class ApiManager
                     }
                     else
                     {
-                        rawData = req.query[argNames[index]];
+                        rawData = req.params[argNames[index]] ?? req.query[argNames[index]];
                         switch (argTypes[index])
                         {
                             case 'String':
