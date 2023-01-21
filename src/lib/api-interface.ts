@@ -8,6 +8,7 @@ export enum HttpMethods
     Get,
     Post,
     Put,
+    Patch,
     Delete
 }
 
@@ -70,6 +71,23 @@ export const httpPut = (url: string = '') => (target: any, key: string) =>
         argTypes: getMethodArgTypesData(target, key),
         url,
         httpType: HttpMethods.Put,
+        contentType: ContentType.Data
+    });
+};
+
+export const httpPatch = (url: string = '') => (target: any, key: string) =>
+{
+    const className = target.constructor.name;
+    if (!apiManager.httpMethodsCatalog[className])
+    {
+        apiManager.httpMethodsCatalog[className] = [];
+    }
+
+    apiManager.httpMethodsCatalog[className].push({
+        name: key,
+        argTypes: getMethodArgTypesData(target, key),
+        url,
+        httpType: HttpMethods.Patch,
         contentType: ContentType.Data
     });
 };

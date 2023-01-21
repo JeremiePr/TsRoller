@@ -55,6 +55,7 @@ export class ApiManager
                         case HttpMethods.Get: router.get(route, httpMethod); break;
                         case HttpMethods.Post: router.post(route, httpMethod); break;
                         case HttpMethods.Put: router.put(route, httpMethod); break;
+                        case HttpMethods.Patch: router.patch(route, httpMethod); break;
                         case HttpMethods.Delete: router.delete(route, httpMethod); break;
                     }
                     break;

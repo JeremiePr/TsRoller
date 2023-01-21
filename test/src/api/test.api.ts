@@ -1,4 +1,4 @@
-import { Controller, controller, httpGet, httpPost, httpPut, httpDelete, fromBody } from '../../../src/lib/api-interface';
+import { Controller, controller, httpGet, httpPost, httpPut, httpDelete, fromBody, httpPatch } from '../../../src/lib/api-interface';
 
 @controller('api/Test')
 export class TestApi implements Controller
@@ -25,6 +25,12 @@ export class TestApi implements Controller
     public put1(param1: number, @fromBody body: any): any
     {
         return { param1, body };
+    }
+
+    @httpPatch('foo/bar/baz/:id')
+    public patch1(id: number, @fromBody body: any): any
+    {
+        return { id, body };
     }
 
     @httpDelete('foo/bar/:id')

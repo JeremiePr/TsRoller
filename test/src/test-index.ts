@@ -76,6 +76,18 @@ const testMethods: Array<() => Promise<void>> = [
 
     async () =>
     {
+        const expected = { id: 92, body: { name: 'Butter', ref: 'IGR0001' } };
+        const actual = await WebClient.patch<any>(baseApiTestRoute + '/foo/bar/baz/92', { name: 'Butter', ref: 'IGR0001' });
+
+        assert(() => Object.keys(actual).length === Object.keys(expected).length);
+        assert(() => actual.id === expected.id);
+        assert(() => Object.keys(actual.body).length === Object.keys(expected.body).length);
+        assert(() => actual.body.name === expected.body.name);
+        assert(() => actual.body.ref === expected.body.ref);
+    },
+
+    async () =>
+    {
         const expected = { id: 7145 };
         const actual = await WebClient.delete<any>(baseApiTestRoute + '/foo/bar/7145');
 

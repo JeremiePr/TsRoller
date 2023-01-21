@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "dist/test/src/test-index.js",
-  "files": ["/dist"],
+  "files": [
+    "/dist"
+  ],
   "author": "jeje-devs",
   "license": "ISC",
   "dependencies": {
-    "@jeje-devs/web-client": "file:D:/Packages/jeje-devs-web-client-1.0.0.tgz"
+    "@jeje-devs/web-client": "file:D:/Packages/jeje-devs-web-client-1.1.0.tgz"
   }
 }
