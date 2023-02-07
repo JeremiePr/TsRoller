@@ -94,4 +94,5 @@ const testMethods: Array<() => Promise<void>> = [
         assert(() => Object.keys(actual).length === Object.keys(expected).length);
         assert(() => actual.id === expected.id);
     }
+
 ];
